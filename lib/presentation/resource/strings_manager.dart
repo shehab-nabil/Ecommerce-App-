@@ -9,6 +9,7 @@ class AppStrings {
   static const onBoardingSubTitle2 = "on_boarding_desc2";
   static const onBoardingSubTitle3 = "on_boarding_desc3";
   static const onBoardingSubTitle4 = "on_boarding_desc4";
+
   static const skip = "skip";
   static const username = "username_hint";
   static const password = "password_hint";
@@ -25,8 +26,7 @@ class AppStrings {
   static const String resetPassword = "reset_password";
   static const String success = "success";
   static const String userNameInvalid = "username_hint_message";
-  static const String mobileNumberInvalid =
-      "mobile_number_hint_message";
+  static const String mobileNumberInvalid = "mobile_number_hint_message";
   static const String passwordInvalid = "password_hint_message";
   static const String alreadyHaveAccount = "already_have_account";
   static const register = "register";
