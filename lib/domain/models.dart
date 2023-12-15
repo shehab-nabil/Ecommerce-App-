@@ -45,8 +45,8 @@ class ContactsModel {
 }
 
 class AuthenticationModel {
-  CustomerModel customer;
-  ContactsModel contacts;
+  CustomerModel? customer;
+  ContactsModel? contacts;
   AuthenticationModel(
     this.customer,
     this.contacts,
