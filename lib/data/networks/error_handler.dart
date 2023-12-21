@@ -1,43 +1,48 @@
+import 'package:dio/dio.dart';
 import 'package:tut/data/networks/failure.dart';
 import 'package:tut/presentation/resource/strings_manager.dart';
 
-// class ErrorHandler implements Exception {
-//   late Failure failure;
+class ErrorHandler implements Exception {
+  late Failure failure;
 
-//   ErrorHandler.handle(dynamic error) {
-//     if (error is DioError) {
-//       // dio error so its an error from response of the API or from dio itself
-//       failure = _handleError(error);
-//     } else {
-//       // default error
-//       failure = DataSource.DEFAULT.getFailure();
-//     }
-//   }
-// }
+  ErrorHandler.handle(dynamic error) {
+    if (error is DioException) {
+      // dio error so its an error from response of the API or from dio itself
+      failure = _handleError(error);
+    } else {
+      // default error
+      failure = DataSource.defaultCode.getFailure();
+    }
+  }
+}
 
-// Failure _handleError(DioError error) {
-//   switch (error.type) {
-//     // case DioErrorType.connectTimeout:
-//     //   return DataSource.CONNECT_TIMEOUT.getFailure();
-//     case DioErrorType.sendTimeout:
-//       return DataSource.SEND_TIMEOUT.getFailure();
-//     case DioErrorType.receiveTimeout:
-//       return DataSource.RECIEVE_TIMEOUT.getFailure();
-//     // case DioErrorType.response:
-//     //   if (error.response != null &&
-//     //       error.response?.statusCode != null &&
-//     //       error.response?.statusMessage != null) {
-//     //     return Failure(error.response?.statusCode ?? 0,
-//     //         error.response?.statusMessage ?? "");
-//     //   } else {
-//     //     return DataSource.DEFAULT.getFailure();
-//     //   }
-//     case DioErrorType.cancel:
-//       return DataSource.CANCEL.getFailure();
-//     // case DioErrorType.other:
-//     //   return DataSource.DEFAULT.getFailure();
-//   }
-// }
+Failure _handleError(DioException error) {
+  switch (error.type) {
+    case DioExceptionType.connectionTimeout:
+      return DataSource.connectTimeout.getFailure();
+    case DioExceptionType.sendTimeout:
+      return DataSource.sendTimeout.getFailure();
+    case DioExceptionType.receiveTimeout:
+      return DataSource.recieveTimeout.getFailure();
+    case DioExceptionType.badCertificate:
+      if (error.response != null &&
+          error.response?.statusCode != null &&
+          error.response?.statusMessage != null) {
+        return Failure(error.response?.statusCode ?? 0,
+            error.response?.statusMessage ?? "");
+      } else {
+        return DataSource.defaultCode.getFailure();
+      }
+    case DioExceptionType.badResponse:
+      return DataSource.badRequest.getFailure();
+    case DioExceptionType.cancel:
+      return DataSource.cancel.getFailure();
+    case DioExceptionType.connectionError:
+      return DataSource.noInternetConnection.getFailure();
+    case DioExceptionType.unknown:
+      return DataSource.defaultCode.getFailure();
+  }
+}
 
 enum DataSource {
   success,
