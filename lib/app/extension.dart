@@ -1,4 +1,4 @@
-import 'package:tut/app/constants.dart';
+import 'constants.dart';
 
 extension NonNullStrings on String? {
   String orEmpty() {

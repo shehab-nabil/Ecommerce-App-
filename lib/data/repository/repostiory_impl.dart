@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
-import 'package:tut/data/data_source/remote_data_source.dart';
-import 'package:tut/data/mapper/mapper.dart';
-import 'package:tut/data/networks/error_handler.dart';
+import '../data_source/remote_data_source.dart';
+import '../mapper/mapper.dart';
+import '../networks/error_handler.dart';
 
-import 'package:tut/data/networks/failure.dart';
-import 'package:tut/data/networks/network_info.dart';
+import '../networks/failure.dart';
+import '../networks/network_info.dart';
 
-import 'package:tut/data/networks/requests.dart';
+import '../networks/requests.dart';
 
-import 'package:tut/domain/models/models.dart';
+import '../../domain/models/models.dart';
 
 import '../../domain/repository/repository.dart';
 

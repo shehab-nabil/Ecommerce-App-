@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:tut/domain/models/models.dart';
-import 'package:tut/presentation/base/base_viewmodel.dart';
-import 'package:tut/presentation/resource/assets_manager.dart';
-import 'package:tut/presentation/resource/strings_manager.dart';
+import '../../../domain/models/models.dart';
+import '../../base/base_viewmodel.dart';
+import '../../resource/assets_manager.dart';
+import '../../resource/strings_manager.dart';
 
 class OnboardingViewModel extends BaseViewModel {
 // stream controllers outputs

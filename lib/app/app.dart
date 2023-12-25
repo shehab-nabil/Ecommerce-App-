@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tut/presentation/resource/routes_manager.dart';
-import 'package:tut/presentation/resource/theme_manager.dart';
+import '../presentation/resource/routes_manager.dart';
+import '../presentation/resource/theme_manager.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp._internal();

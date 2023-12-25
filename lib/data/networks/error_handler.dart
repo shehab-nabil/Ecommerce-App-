@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:tut/data/networks/failure.dart';
-import 'package:tut/presentation/resource/strings_manager.dart';
+import 'failure.dart';
+import '../../presentation/resource/strings_manager.dart';
 
 class ErrorHandler implements Exception {
   late Failure failure;

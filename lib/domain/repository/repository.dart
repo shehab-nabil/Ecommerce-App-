@@ -1,6 +1,6 @@
-import 'package:tut/data/networks/failure.dart';
-import 'package:tut/data/networks/requests.dart';
-import 'package:tut/domain/models/models.dart';
+import '../../data/networks/failure.dart';
+import '../../data/networks/requests.dart';
+import '../models/models.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class Repository {
