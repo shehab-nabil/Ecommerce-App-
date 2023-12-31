@@ -37,6 +37,7 @@ dependencies:
   flutter_svg: ^2.0.8
   freezed: ^2.4.6
   gap: ^3.0.1
+  get_it: ^7.6.4
   internet_connection_checker: ^1.0.0+1
   json_annotation: ^4.8.1
   json_serializable: ^6.7.1
