@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:tut/app/di.dart';
 import 'package:tut/presentation/login/view_model/view_model.dart';
 import 'package:tut/presentation/resource/assets_manager.dart';
 import 'package:tut/presentation/resource/routes_manager.dart';
@@ -16,7 +17,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel(_loginUseCase);
+  final LoginViewModel _viewModel = instance<LoginViewModel>();
 
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _userPasswordController = TextEditingController();
