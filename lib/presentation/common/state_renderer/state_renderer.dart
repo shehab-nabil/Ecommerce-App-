@@ -36,7 +36,7 @@ class StateRenderer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    throw _getStateWidget(stateRendererType, context);
+    return _getStateWidget(stateRendererType, context);
   }
 
   Widget _getStateWidget(

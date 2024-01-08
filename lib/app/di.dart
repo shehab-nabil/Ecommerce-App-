@@ -10,7 +10,7 @@ import 'package:tut/data/networks/network_info.dart';
 import 'package:tut/data/repository/repostiory_impl.dart';
 import 'package:tut/domain/repository/repository.dart';
 import 'package:tut/domain/usecase/login_usecase.dart';
-import 'package:tut/presentation/login/view_model/view_model.dart';
+import 'package:tut/presentation/login/view_model/login_view_model.dart';
 
 final instance = GetIt.instance;
 
