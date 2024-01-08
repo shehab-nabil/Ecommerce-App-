@@ -22,6 +22,7 @@ class RepositoryImpl implements Repository {
       LoginRequests loginRequests) async {
     if (await _networkInfo.isConnected) {
       // its connected to internet, its safe to call API
+
       try {
         final response = await _remoteDataSource.login(loginRequests);
         if (response.status == ApiInternalStatus.success) {
@@ -29,6 +30,7 @@ class RepositoryImpl implements Repository {
         } else {
           // failure --return business error
           // return either left
+
           return Left(Failure(ApiInternalStatus.failure,
               response.message ?? ResponseMessage.defaultCode));
         }

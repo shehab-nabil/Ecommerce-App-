@@ -6,7 +6,7 @@ import 'package:tut/app/app_prefs.dart';
 import '../../app/constants.dart';
 
 const String APPLICATION_JSON = "application/json";
-const String CONTENT_TYPE = "content-type";
+const String CONTENT_TYPE = "Content-Type";
 const String ACCEPT = "accept";
 const String AUTHORIZATION = "authorization";
 const String DEFAULT_LANGUAGE = "language";

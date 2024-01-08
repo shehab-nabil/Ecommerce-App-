@@ -31,6 +31,7 @@ Failure _handleError(DioException error) {
         return Failure(error.response?.statusCode ?? 0,
             error.response?.statusMessage ?? "");
       } else {
+        print('1');
         return DataSource.defaultCode.getFailure();
       }
     case DioExceptionType.badResponse:
