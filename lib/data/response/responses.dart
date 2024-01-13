@@ -19,11 +19,11 @@ class CustomerResponse {
   String? name;
   @JsonKey(name: 'numOfNotifications')
   int? numOfNotifications;
-  CustomerResponse({
+  CustomerResponse(
     this.id,
     this.name,
     this.numOfNotifications,
-  });
+  );
   //from json
   factory CustomerResponse.fromJson(Map<String, dynamic> json) =>
       _$CustomerResponseFromJson(json);
@@ -40,11 +40,11 @@ class ContactsResponse {
   String? email;
   @JsonKey(name: 'link')
   String? link;
-  ContactsResponse({
+  ContactsResponse(
     this.phone,
     this.email,
     this.link,
-  });
+  );
   //from json
   factory ContactsResponse.fromJson(Map<String, dynamic> json) =>
       _$ContactsResponseFromJson(json);
@@ -59,10 +59,10 @@ class AuthenticationResponse extends BaseResponse {
   CustomerResponse? customer;
   @JsonKey(name: 'contacts')
   ContactsResponse? contacts;
-  AuthenticationResponse({
+  AuthenticationResponse(
     this.customer,
     this.contacts,
-  });
+  );
 //from json
   factory AuthenticationResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthenticationResponseFromJson(json);

@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tut/app/app_prefs.dart';
+import 'package:tut/app/di.dart';
 import 'package:tut/domain/models/models.dart';
 import 'package:tut/presentation/onboarding/viewModel/onboarding_viewmodel.dart';
 
@@ -21,7 +23,9 @@ class OnboardingView extends StatefulWidget {
 class _OnboardingViewState extends State<OnboardingView> {
   final PageController _pageController = PageController();
   final OnboardingViewModel _viewModel = OnboardingViewModel();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
   _bind() {
+    _appPreferences.setOnBoardingScreenViewed();
     _viewModel.start();
   }
 

@@ -8,12 +8,12 @@ part of 'app_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _AppServiceClint implements AppServiceClient {
-  _AppServiceClint(
+class _AppServiceClient implements AppServiceClient {
+  _AppServiceClient(
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://2d1ry.wiremockapi.cloud/';
+    baseUrl ??= 'https://2d1ry.wiremockapi.cloud';
   }
 
   final Dio _dio;
@@ -40,7 +40,7 @@ class _AppServiceClint implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'customer/login',
+              '/customer/login',
               queryParameters: queryParameters,
               data: _data,
             )
