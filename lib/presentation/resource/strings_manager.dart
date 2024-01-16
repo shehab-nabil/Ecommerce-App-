@@ -21,9 +21,9 @@ class AppStrings {
   static const loading = "loading";
   static const retryAgain = "retry again";
   static const ok = "ok";
-  static const String emailHint = 'email';
+  static const String emailHint = 'Email';
   static const String invalidEmail = "email error";
-  static const String resetPassword = "reset password";
+  static const String resetPassword = "Reset password";
   static const String success = "success";
   static const String userNameInvalid = "username message";
   static const String mobileNumberInvalid = "mobile number message";
@@ -47,6 +47,7 @@ class AppStrings {
   static const String contactUs = "contact us";
   static const String inviteYourFriends = "invite your friends";
   static const String logout = "logout";
+  static const String resendEmail = "Didn't recieve email?? Resend ";
 
   // error handler
   static const String badRequestError = "bad_request_error";

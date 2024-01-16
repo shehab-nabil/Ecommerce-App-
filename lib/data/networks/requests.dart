@@ -6,3 +6,10 @@ class LoginRequests {
     this.password,
   );
 }
+
+class ForgetPasswordRequests {
+  String email;
+  ForgetPasswordRequests(
+    this.email,
+  );
+}

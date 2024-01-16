@@ -86,8 +86,8 @@ class _LoginViewState extends State<ForgotPasswordView> {
                           keyboardType: TextInputType.emailAddress,
                           controller: _userNameController,
                           decoration: InputDecoration(
-                            hintText: AppStrings.username,
-                            labelText: AppStrings.username,
+                            hintText: AppStrings.emailHint,
+                            labelText: AppStrings.emailHint,
                             errorText: (snapshot.data ?? true)
                                 ? null
                                 : AppStrings.usernameError,
@@ -116,33 +116,14 @@ class _LoginViewState extends State<ForgotPasswordView> {
                         );
                       }),
                 ),
-                const Gap(AppSize.s40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(
-                            context, Routes.forgotPasswordRoute);
-                      },
-                      child: Text(
-                        AppStrings.forgetPassword,
-                        style: Theme.of(context).textTheme.titleMedium,
-                        textAlign: TextAlign.end,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(
-                            context, Routes.registerRoute);
-                      },
-                      child: Text(
-                        AppStrings.register,
-                        style: Theme.of(context).textTheme.titleMedium,
-                        textAlign: TextAlign.end,
-                      ),
-                    ),
-                  ],
+                const Gap(AppSize.s28),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    AppStrings.resendEmail,
+                    style: Theme.of(context).textTheme.titleMedium,
+                    textAlign: TextAlign.end,
+                  ),
                 ),
               ],
             )),
