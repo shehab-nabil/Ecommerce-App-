@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:tut/app/app_prefs.dart';
 import 'package:tut/app/di.dart';
 import 'package:tut/presentation/common/state_renderer/state_renderer_impl.dart';
+import 'package:tut/presentation/forgot_password/view_model/forget_passsword_view_model.dart';
 import 'package:tut/presentation/login/view_model/login_view_model.dart';
 import 'package:tut/presentation/resource/assets_manager.dart';
 import 'package:tut/presentation/resource/routes_manager.dart';
@@ -18,29 +19,28 @@ class ForgotPasswordView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<ForgotPasswordView> {
-  final LoginViewModel _viewModel = instance<LoginViewModel>();
+  final ForgetPasswordViewModel _viewModel =
+      instance<ForgetPasswordViewModel>();
 
-  final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _userPasswordController = TextEditingController();
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final TextEditingController _emailController = TextEditingController();
+  // final AppPreferences _appPreferences = instance<AppPreferences>();
 
   final _formKey = GlobalKey<FormState>();
 
   _bind() {
     _viewModel.start(); // tell viewmodel, start ur job
-    _userNameController
-        .addListener(() => _viewModel.setUserName(_userNameController.text));
-    _userPasswordController.addListener(
-        () => _viewModel.setPassword(_userPasswordController.text));
-    _viewModel.isUserLoggedInSuccessfullyStreamController.stream
-        .listen((isLoggedIn) {
-      if (isLoggedIn) {
-        SchedulerBinding.instance.addPostFrameCallback((_) {
-          _appPreferences.setUserLoggedIn();
-          Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
-        });
-      }
-    });
+    _emailController
+        .addListener(() => _viewModel.setEmail(_emailController.text));
+
+    // _viewModel.isUserLoggedInSuccessfullyStreamController.stream
+    //     .listen((isLoggedIn) {
+    //   if (isLoggedIn) {
+    //     SchedulerBinding.instance.addPostFrameCallback((_) {
+    //       _appPreferences.setUserLoggedIn();
+    //       Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+    //     });
+    //   }
+    // });
   }
 
   @override
@@ -57,7 +57,7 @@ class _LoginViewState extends State<ForgotPasswordView> {
           builder: (context, snapshot) {
             return snapshot.data?.getScreenWidget(context, _getContentWidget(),
                     () {
-                  _viewModel.login();
+                  _viewModel.fogetPassword();
                 }) ??
                 _getContentWidget();
           }),
@@ -80,11 +80,11 @@ class _LoginViewState extends State<ForgotPasswordView> {
                   padding: const EdgeInsets.only(
                       left: AppPadding.p28, right: AppPadding.p28),
                   child: StreamBuilder<bool>(
-                      stream: _viewModel.outIsUserNameValid,
+                      stream: _viewModel.outIsEmailValid,
                       builder: (context, snapshot) {
                         return TextFormField(
                           keyboardType: TextInputType.emailAddress,
-                          controller: _userNameController,
+                          controller: _emailController,
                           decoration: InputDecoration(
                             hintText: AppStrings.emailHint,
                             labelText: AppStrings.emailHint,
@@ -108,7 +108,7 @@ class _LoginViewState extends State<ForgotPasswordView> {
                           child: ElevatedButton(
                             onPressed: (snapshot.data ?? false)
                                 ? () {
-                                    _viewModel.login();
+                                    _viewModel.fogetPassword();
                                   }
                                 : null,
                             child: const Text(AppStrings.resetPassword),

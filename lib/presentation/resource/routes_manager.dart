@@ -33,7 +33,7 @@ class RouteGenerator {
         // initRegisterModule();
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgotPasswordRoute:
-        // initForgotPasswordModule();
+        initForgotPasswordModule();
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
       case Routes.mainRoute:
         // initHomeModule();

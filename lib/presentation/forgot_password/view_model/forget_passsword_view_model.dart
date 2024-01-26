@@ -1,14 +1,13 @@
 import 'dart:async';
 
 import 'package:tut/domain/usecase/forgetpassword_usecase.dart';
-import 'package:tut/domain/usecase/login_usecase.dart';
 import 'package:tut/presentation/base/base_viewmodel.dart';
-import 'package:tut/presentation/common/freezed_data_classes.dart';
 import 'package:tut/presentation/common/state_renderer/state_renderer.dart';
+
 import 'package:tut/presentation/common/state_renderer/state_renderer_impl.dart';
 
 class ForgetPasswordViewModel extends BaseViewModel
-    with LoginViewModelInputs, LoginViewModelOutputs {
+    with ForgetPasswordViewModelInputs, ForgetPasswordViewModelOutputs {
   final StreamController _emailStreamController =
       StreamController<String>.broadcast();
   final StreamController _areAllInputsValidStreamController =
@@ -20,50 +19,75 @@ class ForgetPasswordViewModel extends BaseViewModel
   ForgetPasswordViewModel(this._forgetPasswordUseCase);
 
   @override
+  void start() {
+    inputState.add(ContentState());
+  }
+
+  @override
+  fogetPassword() async {
+    inputState.add(
+        LoadingState(stateRendererType: StateRendererType.popupLoadingState));
+    (await _forgetPasswordUseCase.excute(email)).fold((failure) {
+      ErrorState(
+          stateRendererType: StateRendererType.popupErrorState,
+          message: failure.message);
+    }, (supportMessage) {
+      // inputState.add(SuccessState(supportMessage));
+      inputState.add(ContentState());
+    });
+  }
+
+  //inputs
+
+  @override
+  setEmail(String email) {
+    inputEmail.add(email);
+    this.email = email;
+    _validate();
+  }
+
+  @override
+  Sink get inputEmail => _emailStreamController.sink;
+  @override
+  Sink get inputAreAllInputsValid => _areAllInputsValidStreamController.sink;
+  @override
   void dispose() {
     super.dispose();
     _emailStreamController.close();
     _areAllInputsValidStreamController.close();
   }
 
+//outputs
   @override
-  void start() {
-    inputState.add(ContentState());
+  Stream<bool> get outIsEmailValid =>
+      _emailStreamController.stream.map((event) => isEmailValid(email));
+
+  @override
+  Stream<bool> get outAreAllInputsValid =>
+      _areAllInputsValidStreamController.stream
+          .map((isAllInputValid) => _isAllInputValid());
+
+  _isAllInputValid() {
+    return isEmailValid(email);
   }
 
-  @override
-  fogetPassword() {}
-
-  @override
-  // TODO: implement inputEmail
-  Sink get inputEmail => throw UnimplementedError();
-
-  @override
-  // TODO: implement outIsEmailValid
-  Stream<bool> get outIsEmailValid => throw UnimplementedError();
-
-  @override
-  setEmail(String email) {
-    // TODO: implement setEmail
-    throw UnimplementedError();
+  _validate() {
+    inputAreAllInputsValid.add(null);
   }
-
-  @override
-  // TODO: implement inputAreAllInputsValid
-  Sink get inputAreAllInputsValid => throw UnimplementedError();
-
-  @override
-  // TODO: implement outAreAllInputsValid
-  Stream<bool> get outAreAllInputsValid => throw UnimplementedError();
 }
 
-mixin LoginViewModelInputs {
+mixin ForgetPasswordViewModelInputs {
   fogetPassword();
   setEmail(String email);
   Sink get inputEmail;
   Sink get inputAreAllInputsValid;
 }
-mixin LoginViewModelOutputs {
+mixin ForgetPasswordViewModelOutputs {
   Stream<bool> get outIsEmailValid;
   Stream<bool> get outAreAllInputsValid;
+}
+bool isEmailValid(String email) {
+  return RegExp(
+          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+      .hasMatch(email);
 }
